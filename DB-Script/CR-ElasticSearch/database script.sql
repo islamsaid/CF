@@ -1,0 +1,46 @@
+
+  CREATE TABLE "LK_LOGGING_PARAMETERS" 
+   (	"ID" NUMBER(18,0) NOT NULL ENABLE, 
+	"NAME" VARCHAR2(30 BYTE), 
+	 CONSTRAINT "LK_LOGGING_PARAMETERS_PK" PRIMARY KEY ("ID")
+
+   ) ;
+
+-----------------------------------------------------------------------------
+
+  CREATE TABLE "INTERNAL_LOGGING_NODES" 
+   (	"NODE_ID" NUMBER(10,0) NOT NULL ENABLE, 
+	"NODE_URL" VARCHAR2(100 BYTE) NOT NULL ENABLE, 
+	 CONSTRAINT "INTERNAL_LOGGING_NODES_PK" PRIMARY KEY ("NODE_ID")
+   ) ;
+
+------------------------------------------------------------------------------
+
+
+  CREATE TABLE "LOGGING_NODES" 
+   (	"NODE_ID" NUMBER(10,0) NOT NULL ENABLE, 
+	"NODE_URL" VARCHAR2(100 BYTE), 
+	"MAX_RATE" NUMBER, 
+	 CONSTRAINT "LOGGING_NODES_PK" PRIMARY KEY ("NODE_ID")
+   );
+
+------------------------------------------------------------------------------
+
+
+  CREATE TABLE "SERVICE_LOGGING_MAPPING" 
+   (	"SERVICE_ID" NUMBER(10,0) NOT NULL ENABLE, 
+	"LOGGING_PARAMTER_ID" NUMBER(18,0) NOT NULL ENABLE, 
+	"SPECIAL_FORMAT" VARCHAR2(30 BYTE), 
+	"IS_STATIC" NUMBER, 
+	"DEFAULT_VALUE" VARCHAR2(50 BYTE) DEFAULT null, 
+	"ORDER_ID" NUMBER NOT NULL ENABLE, 
+	CONSTRAINT "SERVICE_LOGGING_MAPPING_PK" PRIMARY KEY ("SERVICE_ID", "LOGGING_PARAMTER_ID", "ORDER_ID")
+   );
+
+------------------------------------------------------------------------------
+
+
+  CREATE TABLE "SERVICE_LOGGING_NODES" 
+   (	"SERVICE_ID" NUMBER, 
+	"NODE_ID" NUMBER
+   );
